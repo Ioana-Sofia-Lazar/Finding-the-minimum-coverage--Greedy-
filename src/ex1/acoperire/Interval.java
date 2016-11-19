@@ -3,8 +3,8 @@ package ex1.acoperire;
 //we will use a class that holds the margins of intervals
 
 class Interval implements Comparable<Interval> {
-    private int a;
-    private int b;
+    private int a = -1;
+    private int b = -1;
 
     public Interval(int x, int y){
         a = x;
@@ -19,10 +19,11 @@ class Interval implements Comparable<Interval> {
     }
 
     //we will sort by the right margin (b)
+    @Override
     public int compareTo(Interval other) {
-      if (this.getB() == other.getB()) return 0;
+      if (this.getA() == other.getA()) return 0;
       else 
-          if (this.getB() > other.getB()) return 1;
+          if (this.getA() > other.getA()) return 1;
           else return -1;    
     }
     

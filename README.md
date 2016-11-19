@@ -2,7 +2,7 @@
 Greedy method for finding the minimum subset of intervals whose reunion covers an interval  
 
 *Author: Ioana-Sofia Pascu*  
-*Created: 10/11/2016*
+*Created: 10/11/2016*  
 Solved problem for my Advanced Programming Techniques laboratory, written in Java language and using Greedy method.
 
 ##Task##

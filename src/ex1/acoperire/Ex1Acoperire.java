@@ -19,27 +19,28 @@ public class Ex1Acoperire {
     static ArrayList<Interval> sol = new ArrayList<>();//will contain all the intervals that form the solution
     
     static Interval max_fin(int t){//returns the interval that contains t and goes as further right as possible
-        int i = start;//we won't start the search from the beginning of the array, as it is pointless to look before the intervals that we already have in the solution
+        int i = start;//we won't start the search from where we left in the last function call
         Interval max = null;
-        int index = 0;
         while (true){    
             if (i >= arr.size()) break; //we exit if we are out of bounds
+            if (arr.get(i).getA() > t) break;
             int left = arr.get(i).getA();
             int right = arr.get(i).getB();
             
-            if (left <= t && right >= t){
+            if (left <= t && right >=t && max == null)
                 max = new Interval(left, right);
-                index = i;
-            } 
-                
+   
+            if (left <= t && right >= t && right >= max.getB())
+                max = new Interval(left, right);
+                           
             i++;
         }
-        start = index + 1; //next function call, we start searching after the last interval that was added to the solution
+        start = i; //next function call, we start searching from where we stopped
         return max;       
     }
     
     static void print(){
-        Collections.sort(arr);//we sort the array by the right margin (b)
+        Collections.sort(arr);//we sort the array by the left margin (a)
         
         try{
             PrintStream printer = new PrintStream(new File("date.out"));
@@ -58,7 +59,6 @@ public class Ex1Acoperire {
                     break;
                 }
             }
-
             if (sol.size() != 0) 
                 for (int i = 0; i < sol.size(); i++)
                     printer.println(sol.get(i));
